@@ -17,9 +17,10 @@ public class Network {
     public Network(HelloController controller){
         ctrl=controller;
         try {
+            socket = new Socket(SERVER_ADDR, SERVER_PORT);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            socket = new Socket(SERVER_ADDR, SERVER_PORT);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
