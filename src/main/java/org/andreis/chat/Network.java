@@ -11,18 +11,25 @@ public class Network {
     private final String SERVER_ADDR = "localhost";
     private final int SERVER_PORT = 8189;
     private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
+    public DataInputStream in;
+    public DataOutputStream out;
     private HelloController ctrl;
     public Network(HelloController controller){
         ctrl=controller;
+        try {
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+            socket = new Socket(SERVER_ADDR, SERVER_PORT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     public void openConnection() throws IOException {
-        socket = new Socket(SERVER_ADDR, SERVER_PORT);
-        in = new DataInputStream(socket.getInputStream());
-        out = new DataOutputStream(socket.getOutputStream());
+
         new Thread(() -> {
             try {
+
                 String str = in.readUTF();
                 ctrl.printMSG("Server",str);
 
