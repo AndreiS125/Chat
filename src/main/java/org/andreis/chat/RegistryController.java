@@ -26,21 +26,15 @@ public class RegistryController {
     @FXML
     void regPerson(ActionEvent event) {
         HelloApplication.network.sendMSG("/auth "+loginField.getText()+" "+passwordField.getText());
-        String s="";
-        try {
-            s = HelloApplication.network.in.readUTF();
-            if(s.startsWith("/authok")){
 
-                HelloApplication.st.setScene(HelloApplication.main.load());
-                HelloApplication.network.openConnection();
+            if(HelloApplication.network.successReg()){
+
             }
             else{
                 err.setVisible(false);
                 err.setVisible(true);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
     }
 

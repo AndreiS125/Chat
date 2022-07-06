@@ -26,6 +26,26 @@ public class Network {
         }
 
     }
+    public boolean successReg(){
+        try {
+            System.out.println("Запрос данных..");
+            String s=in.readUTF();
+
+            System.out.println("Ответ получен..");
+            if (s.startsWith("/authok")) {
+                System.out.println("Регистрация успешно..");
+
+                HelloApplication.st.setScene(HelloApplication.main.load());
+                HelloApplication.network.openConnection();
+                return true;
+            }
+        }
+
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
     public void openConnection() throws IOException {
 
         new Thread(() -> {
