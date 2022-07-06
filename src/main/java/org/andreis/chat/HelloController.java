@@ -21,13 +21,26 @@ public class HelloController {
     void keysnd(KeyEvent event) {
         //entersend event
     }
+    @FXML
+    void initialize() {
+        //entersend event
+    }
 
     @FXML
     void send(ActionEvent event) {
         if(!toSend.getText().equals("")){
             allMessages.getItems().add(toSend.getText());
+            HelloApplication.network.sendMSG(toSend.getText());
+            toSend.setText("");
+        }
+
+    }
+    void printMSG(String senderName,String msg) {
+        if(!msg.equals("")){
+            allMessages.getItems().add(senderName+": "+msg);
 
         }
+
     }
 
 }
