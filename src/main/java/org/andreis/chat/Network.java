@@ -1,5 +1,6 @@
 package org.andreis.chat;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Control;
 
 import java.io.DataInputStream;
@@ -28,6 +29,7 @@ public class Network {
     }
     public boolean successReg(){
         try {
+
             System.out.println("Запрос данных..");
             String s=in.readUTF();
 
@@ -35,7 +37,7 @@ public class Network {
             if (s.startsWith("/authok")) {
                 System.out.println("Регистрация успешно..");
 
-                HelloApplication.st.setScene(HelloApplication.main.load());
+                HelloApplication.st.setScene(new Scene(HelloApplication.main.load(), 600, 400));
                 HelloApplication.network.openConnection();
                 return true;
             }
