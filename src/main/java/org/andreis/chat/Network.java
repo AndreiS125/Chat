@@ -10,14 +10,16 @@ import java.net.Socket;
 
 public class Network {
     private final String SERVER_ADDR = "localhost";
+    private String nick="";
     private final int SERVER_PORT = 8189;
     private Socket socket;
-    public DataInputStream in;
+    private DataInputStream in;
     public DataOutputStream out;
     private HelloController ctrl;
     public Network(HelloController controller){
-        ctrl=controller;
+        ctrl=HelloApplication.main.getController();
         try {
+
             socket = new Socket(SERVER_ADDR, SERVER_PORT);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
@@ -36,7 +38,7 @@ public class Network {
             System.out.println("Ответ получен..");
             if (s.startsWith("/authok")) {
                 System.out.println("Регистрация успешно..");
-
+                nick=s.split(" ")[1];
                 HelloApplication.st.setScene(new Scene(HelloApplication.main.load(), 600, 400));
                 HelloApplication.network.openConnection();
                 return true;
@@ -51,13 +53,24 @@ public class Network {
     public void openConnection() throws IOException {
 
         new Thread(() -> {
-            try {
+            while (true) {
+                ctrl = HelloApplication.main.getController();
+                try {
 
-                String str = in.readUTF();
-                ctrl.printMSG("Server",str);
+                    String str = in.readUTF();
+                    System.out.println(str);
+                    try {
+                        System.out.println(nick);
+                        if(!str.startsWith(nick)) {
+                            ctrl.printMSG(str);
+                        }
+                    } catch (Exception e) {
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                    }
+
+                } catch (IOException e) {
+                    //e.printStackTrace();
+                }
             }
         }).start();
     }

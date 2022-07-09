@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Chat");
         stage.setScene(scene);
         stage.show();
-        network.openConnection();
+        //network.openConnection();
     }
 
     public static void main(String[] args) {

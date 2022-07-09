@@ -35,9 +35,9 @@ public class HelloController {
         }
 
     }
-    void printMSG(String senderName,String msg) {
+    void printMSG(String msg) {
         if(!msg.equals("")){
-            allMessages.getItems().add(senderName+": "+msg);
+            allMessages.getItems().add(msg);
 
         }
 
