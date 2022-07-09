@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andreis.chat.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#msgsend" onMouseEntered="#msgsend" onMouseExited="#msgsend" onMouseMoved="#msgsend" onMousePressed="#msgsend" onMouseReleased="#msgsend" onScroll="#msgsend" onScrollFinished="#msgsend" onScrollStarted="#msgsend" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andreis.chat.HelloController">
    <children>
       <Button layoutX="528.0" layoutY="342.0" mnemonicParsing="false" onAction="#send" prefHeight="57.0" prefWidth="71.0" text="Send" />
       <TextField fx:id="toSend" layoutX="188.0" layoutY="342.0" onKeyPressed="#keysnd" prefHeight="57.0" prefWidth="339.0" promptText="Message" />

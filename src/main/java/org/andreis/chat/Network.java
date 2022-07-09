@@ -59,16 +59,27 @@ public class Network {
 
                     String str = in.readUTF();
                     System.out.println(str);
-                    try {
-                        System.out.println(nick);
-                        if(!str.startsWith(nick)) {
-                            ctrl.printMSG(str);
+                    if(!str.startsWith("/clients")) {
+                        try {
+                            System.out.println(nick);
+                            if (!str.startsWith(nick)) {
+                                ctrl.printMSG(str);
+                                ctrl.seeend();
+                            }
+                        } catch (Exception e) {
+
                         }
-                    } catch (Exception e) {
+                    }
+                    else{
+                        String[] cl = str.split(" ");
+                        ctrl.getClientList().getItems().clear();
+                        for(int i = 1; i<cl.length; i++){
+                            ctrl.getClientList().getItems().add(cl[i]);
+                        }
 
                     }
 
-                } catch (IOException e) {
+                } catch (IOException | IllegalStateException e) {
                     //e.printStackTrace();
                 }
             }

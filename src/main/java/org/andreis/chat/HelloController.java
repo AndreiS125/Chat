@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+
+import java.util.ArrayList;
 
 public class HelloController {
-
+    private ArrayList<String> messagesToSend=new ArrayList<String>();
     @FXML
     private ListView<String> allMessages;
 
@@ -22,8 +25,19 @@ public class HelloController {
         //entersend event
     }
     @FXML
+    void msgsend(MouseEvent event) {
+        for(String s:messagesToSend){
+            allMessages.getItems().add(s);
+        }
+        messagesToSend.clear();
+    }
+    @FXML
     void initialize() {
-        //entersend event
+
+        for(String s:messagesToSend){
+            allMessages.getItems().add(s);
+        }
+
     }
 
     @FXML
@@ -37,9 +51,24 @@ public class HelloController {
     }
     void printMSG(String msg) {
         if(!msg.equals("")){
-            allMessages.getItems().add(msg);
+            messagesToSend.add(msg);
+
 
         }
+
+    }
+
+    void seeend() {
+
+            allMessages.scrollTo(allMessages.getItems().size());
+
+
+
+
+    }
+
+    ListView getClientList() {
+        return allUsers;
 
     }
 
