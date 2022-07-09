@@ -8,15 +8,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    static FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-    public static Network network=new Network(fxmlLoader.getController());
+    static FXMLLoader main = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+    static FXMLLoader regis = new FXMLLoader(HelloApplication.class.getResource("registry.fxml"));
+    public static Network network;
+    static Stage st;
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        st=stage;
+        network=new Network(main.getController());
+        Scene scene = new Scene(regis.load(), 600, 400);
         stage.setTitle("Chat");
         stage.setScene(scene);
         stage.show();
-        network.openConnection();
+        //network.openConnection();
     }
 
     public static void main(String[] args) {
