@@ -29,6 +29,7 @@ public class HelloController {
         for(String s:messagesToSend){
             allMessages.getItems().add(s);
         }
+
         messagesToSend.clear();
     }
     @FXML
