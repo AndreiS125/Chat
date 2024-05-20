@@ -32,12 +32,12 @@ public class Network {
     public boolean successReg(){
         try {
 
-            System.out.println("Запрос данных..");
+            
             String s=in.readUTF();
 
-            System.out.println("Ответ получен..");
+            
             if (s.startsWith("/authok")) {
-                System.out.println("Регистрация успешно..");
+                
                 nick=s.split(" ")[1];
                 HelloApplication.st.setScene(new Scene(HelloApplication.main.load(), 600, 400));
                 HelloApplication.network.openConnection();
